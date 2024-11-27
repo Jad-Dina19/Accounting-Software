@@ -12,7 +12,7 @@ def read_csv(file_name, include_headers = True):
     if(include_headers):
         for line in file:
             data += [line.replace("\n","").split(",")]
-            data[len(data)-1] = float(data[len(data)-1])
+            data[len(data)-1][2] = float(data[len(data)-1][2])
     
     else:
         count = 0

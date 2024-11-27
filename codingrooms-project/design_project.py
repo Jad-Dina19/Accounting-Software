@@ -51,6 +51,63 @@ def mean(data_list):
                 mean_list.append(col)
     return np.mean(mean_list)
 
-file_name = input("Enter file name")
-M = csv.read_csv(file_name, False)
-print(mean(position(M, "Software Engineer")))
+def menu():
+    while(True):    
+        lst = ["Personal Income", "Company Billables", "Company Payments", "Exit"]
+        print("Welcome! Please select an option to view:\n")
+        for index, option in enumerate(lst, start=1):
+            print(f"\t{index}.  {option}")
+    
+    
+        try:
+            option = int(input())
+            if(option not in[1, 2, 3, 4]):
+                print("Invalid Input")
+            else:
+                return option
+
+        
+        except ValueError:
+            print("Invalid Input")
+
+def path1():
+    while(True):
+        print("What would you like to view?")    
+        lst = ["Personal Income", "Average Wage for Position", "Net Income", "Exit"]
+
+        for index, option in enumerate(lst, start=1):
+            print(f"\t{index}.  {option}")
+    
+    
+        try:
+            option = int(input())
+            if(option not in[1, 2, 3, 4]):
+                print("Invalid Input")
+            else:
+                return option
+
+        
+        except ValueError:
+            print("Invalid Input")
+    
+def path2():
+    pass
+def path3():
+    pass
+
+
+while(True):    
+    option = menu()
+    if option == 1:
+        while(True):
+            path1_opt = path1()
+            if path1_opt == 1:
+                name = input("Enter name of employee who's income you would like to view:")
+
+    elif option == 2:
+        path2()
+    elif option == 3:
+        path3()
+    else:
+        break
+    
