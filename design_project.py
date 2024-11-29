@@ -1,5 +1,6 @@
 import numpy as np
 import user_csv as csv
+
 # design_project.py
 # ENDG 233 F24
 # STUDENT NAME(S)
@@ -43,6 +44,14 @@ def mean(data_list):
                 mean_list.append(col)
     return np.mean(mean_list)
 
+def sum(data_list):
+    mean_list = []
+    for row in data_list:
+        for col in row:
+            if type(col) == float:
+                mean_list.append(col)
+    return np.sum(mean_list)
+
 def search_wage(name, lst):
     for row in lst:
         for i in range(len(row)):
@@ -82,10 +91,17 @@ def store_tax(name, income_tax, net_income, tax_list):
                 return tax_list
         count += 1
 
+def find_billable(name, data):
+
+    for row in data:
+       
+        if row[0] == name:
+            
+            return row[1]
 
 def menu():
     while(True):    
-        lst = ["Personal Details", "Company Billables", "Company Payments", "Exit"]
+        lst = ["Personal Details", "Company Billables", "Exit"]
         print("Welcome! Please select an option to view:\n")
         for index, option in enumerate(lst, start=1):
             print(f"\t{index}.  {option}")
@@ -123,10 +139,25 @@ def path1():
             print("Invalid Input")
     
 def path2():
-    pass
-def path3():
-    pass
+    while(True):   
+        
+        print("\nCompany Billables: Select an option:")    
+        lst = ["Project Price", "Max Billable", "Revenue", "Profit", "Exit"]
 
+        for index, option in enumerate(lst, start=1):
+            print(f"\t{index}.  {option}")
+        
+        try:
+            option = int(input())
+            if(option not in[1, 2, 3, 4, 5]):
+                print("Invalid Input")
+            else:
+                return option
+
+        
+        except ValueError:
+            print("Invalid Input")
+        
 
 #Runs the main program
 if __name__ == "__main__":
@@ -136,23 +167,23 @@ if __name__ == "__main__":
 
             while(True):
 
-                path1_opt = path1()
-                if path1_opt == 1:
+                path_opt = path1()
+                if path_opt == 1:
                     
-                    name = input("Enter name of employee who's income you would like to view:")
+                    name = input("Enter name of employee who's income you would like to view: ")
                     employee_list = csv.read_csv("Employees", False)
                     wage = search_wage(name, employee_list)
 
                     print(f"{name}'s wage is ${wage:.2f}.\n")
 
-                elif path1_opt == 2:
-                    posi = input("Enter the position you want to check average wage for Ex(Software Engineer):")
+                elif path_opt == 2:
+                    posi = input("Enter the position you want to check average wage for Ex(Software Engineer): ")
                     employee_list = csv.read_csv("Employees", False)
                     average_wage = mean(position(employee_list, posi))
 
-                    print(f"The average wage for the {posi} position is ${average_wage:.2f}.")
+                    print(f"\nThe average wage for the {posi} position is ${average_wage:.2f}.")
                 
-                elif path1_opt == 3:
+                elif path_opt == 3:
                     name = input("Enter name of employee who's income tax you would like to calculate")
                     employee_list = csv.read_csv("Employees", False)
                     
@@ -162,21 +193,51 @@ if __name__ == "__main__":
 
                     net = net_income(tax, wage)
 
-                    print(f"{name} had a gross annual salary of {wage:.2f}, an income tax of ${tax:.2f}, and a net income of ${net:.2f}\n")
+                    print(f"\n{name} had a gross annual salary of {wage:.2f}, an income tax of ${tax:.2f}, and a net income of ${net:.2f}\n")
 
                     tax_list = csv.read_csv("Taxes")
                     updated_list = store_tax(name, tax, net, tax_list)
                     csv.write_csv("Taxes", updated_list, True)
-                    print(f"{name}'s Tax sheet has been updataed\n")
+                    print(f"\n{name}'s Tax sheet has been updataed\n")
                 else:
                     break
                 
                 continue
 
         elif option == 2:
-            path2()
-        elif option == 3:
-            path3()
-        else:
-            break
+            while(True):
+                path_opt = path2()
+                
+                if path_opt == 1:
+                    
+                    billables = csv.read_csv("Monthy_Billables")
+                    
+                    project = input("Enter a project whose price you would like to view: ")
+
+                    print(f"\nFor the {project} project we billed the client${find_billable(project, billables):.2f}")
+                
+                elif path_opt == 2:
+                    
+                    billables = csv.read_csv("Monthly_Billables", False)
+                    print(f"\nThe max a client was charged was ${max(billables)}")
+
+                elif path_opt == 3:
+                    
+                    billables = csv.read_csv("Monthly_Billables", False)
+                    print(f"\nCompany's Monthly Earnings ${sum(billables)}")
+                elif path_opt == 4:
+                    
+                    employee_list = csv.read_csv("Employees", False)
+                    billables = csv.read_csv("Monthly_Billables", False)
+                    
+                    revenue = sum(billables)
+                    total_wages = sum(employee_list)/(12)
+
+                    profit = revenue - total_wages
+
+                    print(f"\nThe profit for the month is ${profit:.2f}.")
+
+                else:
+                    break
+
     

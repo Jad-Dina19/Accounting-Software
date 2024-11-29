@@ -6,6 +6,13 @@ import numpy as np
 # A terminal-based data analysis and visualization program in Python.
 # You must follow the specifications provided in the project description.
 # Remember to include docstrings and comments throughout your code.
+def isfloat(num):
+    try:
+        float(num)
+        return True
+    except ValueError:
+        return False
+    
 def read_csv(file_name, include_headers = True):
     file = open(f"data_files/{file_name}.csv", "r")
     data =[]
@@ -26,7 +33,7 @@ def read_csv(file_name, include_headers = True):
     for row in data:
         for i in range(len(row)):
             
-            if row[i].isnumeric():
+            if isfloat(row[i]):
                 row[i] = float(row[i])    
         new_data.append(row)
    
