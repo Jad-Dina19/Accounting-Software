@@ -57,20 +57,16 @@ def write_csv(file_name, data, overwrite):
         file.close()
     
     else:
-        file = open(f"data_files/{file_name}.csv", "w")
+        file = open(f"data_files/{file_name}.csv", "a")
         count = 0
         for row in data:
             
             for i in range(len(row)):
-                if i == (len(row) -1) and count == len(data) - 1:
-                    
-                    file.write(f"{row[i]}")
-                elif i == (len(row) -1):
+                if i == (len(row) -1):
                 
                     file.write(f"{row[i]}\n")
                 else:
 
                     file.write(f"{row[i]},")
-            count+=1
         file.close()
 

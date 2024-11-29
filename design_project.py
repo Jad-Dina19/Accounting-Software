@@ -85,8 +85,8 @@ def store_tax(name, income_tax, net_income, tax_list):
     for row in tax_list:
         for i in range(len(row)):
             if row[0] == name:
-                row[2] = net_income
-                row[3] = income_tax
+                row[2] = round(net_income, 1)
+                row[3] = round(income_tax, 1)
                 tax_list[count] = row
                 return tax_list
         count += 1
