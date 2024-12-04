@@ -248,7 +248,7 @@ def menu():
     
         #error handling, checks if input is valid integer
         try:
-            option = int(input()) #this may trigger the TypeError
+            option = int(input(">>>")) #this may trigger the TypeError
 
             if(option not in[1, 2, 3, 4]):
                 
@@ -283,7 +283,7 @@ def path1():
     
         #error handling, checks if input is valid integer
         try:
-            option = int(input()) #this may trigger the TypeError
+            option = int(input(">>>")) #this may trigger the TypeError
 
             if(option not in[1, 2, 3, 4]):
                 
@@ -319,7 +319,7 @@ def path2():
         
         #error handling, checks if input is valid integer
         try:
-            option = int(input()) #this may trigger the TypeError
+            option = int(input(">>>")) #this may trigger the TypeError
 
             if(option not in[1, 2, 3, 4, 5]):
                 
@@ -360,7 +360,7 @@ if __name__ == "__main__":
                     
                     wage = search_wage(name, employee_array) #searches for wage
 
-                    print(f"{name}'s wage is ${wage:.2f}.\n")   #prints employee wage
+                    print(f"\n{name}'s wage is ${wage:.2f}.\n")   #prints employee wage
 
                 elif path_opt == 2:
                     
@@ -396,7 +396,7 @@ if __name__ == "__main__":
                     plt.show()
                 
                 elif path_opt == 3:
-                    name = input("Enter name of employee who's income tax you would like to calculate") #user input
+                    name = input("Enter name of employee who's income tax you would like to calculate: ") #user input
                     
                     employee_array = csv.read_csv("Employees", False) #reads Employees.csv
                     
