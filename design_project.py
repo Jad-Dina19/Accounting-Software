@@ -7,59 +7,59 @@ import random       #This is just used to display how our plotting works, isn't 
 # ENDG 233 F24
 # Jad Dina, Shlok Bhatt
 
-def max(data_list):
+def max(arr):
     """ 
-    finds the maximum of a 2D list 
+    finds the maximum of a 2D array
     
-    parameters: takes a 2D list, must have floats or ints
+    parameters: takes a 2D array, must have floats or ints
    
-    returns: maximum number of  2D list as a float
+    returns: maximum number of  2D array as a float
     none if there are no floats  or ints
     """
     
     max_list=[]
 
-    #iterates through each value in 2D list
-    for row in data_list:
+    #iterates through each value in 2D array
+    for row in arr:
 
         for col in row:
 
-            #checks if value is a number and adds it a list with only numbers
+            #checks if value is a number and adds it a 2D array with only numbers
             if type(col) == float or type(col) == int:
                 
                 max_list.append(col)
     
-    return np.max(max_list) #returns the maximum of the list
+    return np.max(max_list) #returns the maximum of the 2D array
 
 
-def min(data_list):
+def min(arr):
     """ 
-    finds the minimum of a 2D list 
+    finds the minimum of a 2D array
     
-    parameters: takes a 2D list, must have floats or ints
+    parameters: takes a 2D array, must have floats or ints
    
-    returns: minimum number of  2D list as a float
+    returns: minimum number of  2D array as a float
     none if there are no floats or ints 
     """
     min_list=[]
 
-    #iterates through each value in 2D list
-    for row in data_list:
+    #iterates through each value in 2D array
+    for row in arr:
 
         for col in row:
 
-            #checks if value is a number and adds to list of only numbers
+            #checks if value is a number and adds to array of only numbers
             if type(col) == float or type(col) == int:
 
                 min_list.append(col)
 
-    return np.min(min_list) #returns minimum of list 
+    return np.min(min_list) #returns minimum of array 
 
-def position(data_list, position):
+def position(arr, position):
     """
-    create list of only specific job position requested
+    create a list of only specific job position requested from 2D array
 
-    parameters: data_list: list of data read from Employees.csv
+    parameters: arr: 2D numpy array of data read from Employees.csv
     position: position to be searched for
 
     returns: 2D list containing lists of people who work a certain position, and their salary
@@ -67,31 +67,31 @@ def position(data_list, position):
     
     position_list = []
     
-    #iterates through the lists within the 2D list
-    for row in data_list:
+    #iterates through the arrays within the 2D array
+    for row in arr:
         
-        #checks if the positions match and adds the row into an new list if they match
+        #checks if the positions match and adds the row into an new array if they match
         if row[1] == position:
             
             position_list += [row]
 
-    return position_list    #returns the new 2D list
+    return position_list    #returns the new 2D array
 
-def mean(data_list):
+def mean(arr):
     
     """ 
-    finds the mean of a 2D list 
+    finds the mean of a 2D array 
     
-    parameters: takes a 2D list, must have floats or ints
+    parameters: takes a 2D array, must have floats or ints
    
-    returns: mean number of 2D list as a float
+    returns: mean number of 2D array as a float
     none if there are no floats or ints 
     """
     
     mean_list = []
    
-    #iterates through each value in 2D list
-    for row in data_list:
+    #iterates through each value in 2D array
+    for row in arr:
 
         for col in row:
 
@@ -100,21 +100,21 @@ def mean(data_list):
 
                 mean_list.append(col)
 
-    return np.mean(mean_list) #returns the mean of the 2D list
+    return np.mean(mean_list) #returns the mean of the 2D array
 
-def sum(data_list):
+def sum(arr):
     """
-    finds the sum of a 2D list 
+    finds the sum of a 2D array
     
-    parameters: takes a 2D list, must have floats or ints
+    parameters: takes a 2D array, must have floats or ints
    
-    returns: sum of 2D list as a float
+    returns: sum of 2D array as a float
     none if there are no floats or ints 
     """
     mean_list = []
 
-    #iterates through every value in the 2D list 
-    for row in data_list:
+    #iterates through every value in the 2D array
+    for row in arr:
 
         for col in row:
 
@@ -123,7 +123,7 @@ def sum(data_list):
 
                 mean_list.append(col)
 
-    return np.sum(mean_list)    #returns the sum of the 2D list
+    return np.sum(mean_list)    #returns the sum of the 2D array
 
 
 def search_wage(name, lst):
@@ -131,16 +131,16 @@ def search_wage(name, lst):
     searches the wage of a person whose name is input
 
     parameters: name: must be a string of a person on the Employees.csv sheet
-                lst: must be a 2D list read from the Employees.csv sheet
+                lst: must be a 2D array read from the Employees.csv sheet
     
     returns: returns wage of a specific person who was input as a float
     """
-    #iterates through each list in the 2D list
+    #iterates through each array in the 2D array
     for row in lst:
         
         #checks if the names match 
         if row[0] == name:
-            
+
             return row[2]   #returns persons annual salary
 
 def income_tax(wage):
@@ -184,44 +184,44 @@ def net_income(income_tax, wage):
     
     return wage - income_tax #returns income tax subtracted from wage which is net income
 
-def store_tax(name, income_tax, net_income, tax_list):
+def store_tax(name, income_tax, net_income, tax_arr):
     """
-    modifies 2D list with updated tax information by storing it by name
+    modifies 2D array with updated tax information by storing it by name
 
     parameters: name: string of person
                 income tax: float of income tax 
                 net_income: float of net income
-                tax_list: 2D list read from Taxes.csv
+                tax_arr: 2D array read from Taxes.csv
 
-    returns: updated tax_list as a 2D list
+    returns: updated tax_array as a 2D list
     """
     count = 0   #counter variable
 
-    #iterates through the index values in each row
-    for row in tax_list:
+    #iterates through the index values in each row the 2D array
+    for row in tax_arr:
 
         for i in range(len(row)):
 
-            #checks if the row matches the name and inputs the floats rounded to 1 decimal into the updated list
+            #checks if the row matches the name and inputs the floats rounded to 1 decimal into the updated array
             if row[0] == name:
                 
                 row[2] = round(net_income, 1)
                 row[3] = round(income_tax, 1)
-                tax_list[count] = row   #the purpose of the counter is to keep track of which row gets replaced
+                tax_arr[count] = row   #the purpose of the counter is to keep track of which row gets replaced
                 
-                return tax_list     #returns the updated tax list
+                return tax_arr     #returns the updated tax array
         
         count += 1  #counter increments by 1
 
-def find_billable(name, data_list):
+def find_billable(name, data_arr):
     """
     finds the amount billed for a specific project
 
      parameter: name: string name of project
-                data_list: 2D list read from January_Billables.csv
+                data_arr: 2D array read from January_Billables.csv
     """
-    #iterates through each row in the list
-    for row in data_list:
+    #iterates through each row in the array
+    for row in data_arr:
        
         #when the project matches its corresponding price is returned
         if row[0] == name:
@@ -248,7 +248,7 @@ def menu():
     
         #error handling, checks if input is valid integer
         try:
-            option = int(input()) #this may trigger the TypeError
+            option = int(input(">>>")) #this may trigger the TypeError
 
             if(option not in[1, 2, 3, 4]):
                 
@@ -283,7 +283,7 @@ def path1():
     
         #error handling, checks if input is valid integer
         try:
-            option = int(input()) #this may trigger the TypeError
+            option = int(input(">>>")) #this may trigger the TypeError
 
             if(option not in[1, 2, 3, 4]):
                 
@@ -319,7 +319,7 @@ def path2():
         
         #error handling, checks if input is valid integer
         try:
-            option = int(input()) #this may trigger the TypeError
+            option = int(input(">>>")) #this may trigger the TypeError
 
             if(option not in[1, 2, 3, 4, 5]):
                 
@@ -356,20 +356,20 @@ if __name__ == "__main__":
                     
                     name = input("Enter name of employee who's income you would like to view: ") #input name
                     
-                    employee_list = csv.read_csv("Employees", False)    #reads Employees.csv and stores it
+                    employee_array = csv.read_csv("Employees", False)    #reads Employees.csv and stores it
                     
-                    wage = search_wage(name, employee_list) #searches for wage
+                    wage = search_wage(name, employee_array) #searches for wage
 
-                    print(f"{name}'s wage is ${wage:.2f}.\n")   #prints employee wage
+                    print(f"\n{name}'s wage is ${wage:.2f}.\n")   #prints employee wage
 
                 elif path_opt == 2:
                     
                     #user input 
                     posi = input("Enter the position you want to check average wage for Ex(Software Engineer): ") 
 
-                    employee_list = csv.read_csv("Employees", False) #reads Employees.csv and stores it
+                    employee_array = csv.read_csv("Employees", False) #reads Employees.csv and stores it
 
-                    average_wage = mean(position(employee_list, posi)) #calculates averagae wage
+                    average_wage = mean(position(employee_array, posi)) #calculates averagae wage
 
                     print(f"\nThe average wage for the {posi} position is ${average_wage:.2f}.") #prints average wage and position
                     
@@ -379,9 +379,9 @@ if __name__ == "__main__":
                     
                     #fills empty list with the average wages 
                     for pos in positions:
-                        average_wages.append(mean(position(employee_list, pos)))
+                        average_wages.append(mean(position(employee_array, pos)))
                     
-                    #the wage and job lists are now used to plot a graph
+                    #the wage and job ls are now used to plot a graph
 
                     plt.figure(figsize = [10,5])    #graph size
                     plt.bar(positions, average_wages, color = 'blue', width = 0.3 ) #bar graph
@@ -396,12 +396,12 @@ if __name__ == "__main__":
                     plt.show()
                 
                 elif path_opt == 3:
-                    name = input("Enter name of employee who's income tax you would like to calculate") #user input
+                    name = input("Enter name of employee who's income tax you would like to calculate: ") #user input
                     
-                    employee_list = csv.read_csv("Employees", False) #reads Employees.csv
+                    employee_array = csv.read_csv("Employees", False) #reads Employees.csv
                     
                     #finds wage of employee, calculates income tax, and net income
-                    wage = search_wage(name, employee_list)
+                    wage = search_wage(name, employee_array)
                     tax = income_tax(wage)
                     net = net_income(tax, wage)
 
@@ -411,9 +411,9 @@ if __name__ == "__main__":
                     
                     #reads Taxes.csv and writes updates to it of the tax values that were calculated
                     
-                    tax_list = csv.read_csv("Taxes")    #reads csv
-                    updated_list = store_tax(name, tax, net, tax_list) #stores it in the 2D list 
-                    csv.write_csv("Taxes", updated_list, True) #writes it to the csv file
+                    tax_array = csv.read_csv("Taxes")    #reads csv
+                    updated_array = store_tax(name, tax, net, tax_array) #stores it in the 2D array 
+                    csv.write_csv("Taxes", updated_array, True) #writes it to the csv file
                     print(f"\n{name}'s Tax sheet has been updataed\n") #prints that the update happened
 
                 else:
@@ -439,7 +439,7 @@ if __name__ == "__main__":
                 
                 elif path_opt == 2:
                     
-                    billables = csv.read_csv("January_Billables", False)    #reads csv file and stores value in 2D list
+                    billables = csv.read_csv("January_Billables", False)    #reads csv file and stores value in 2D array
                     #prints the maximum the company billed a client for a project
                     print(f"\nThe max a client was charged was: ${max(billables)}")
 
@@ -451,14 +451,14 @@ if __name__ == "__main__":
 
                 elif path_opt == 4:
                     
-                    employee_list = csv.read_csv("Employees", False)    #reads csv file and stores value in 2D 
+                    employee_array = csv.read_csv("Employees", False)    #reads csv file and stores value in 2D 
                     
                     billables = csv.read_csv("January_Billables", False)    #reads csv file and stores value in 2D 
                     
                     
                     revenue = sum(billables) #calculates revenue
                     
-                    total_wages = sum(employee_list)/(12) #calculates the sum of the employees wages per month
+                    total_wages = sum(employee_array)/(12) #calculates the sum of the employees wages per month
 
                     profit = revenue - total_wages #calculates monthly profit
 
